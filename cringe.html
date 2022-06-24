@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: hsl(201deg 18% 19%);
+    color: white;
+}
+code {
+    display: block;
+    white-space: pre-wrap;
+    padding: 10px;
+    line-height: 1.5em;
+    font-family: "Lucida Console", Monaco, monospace;
+    background-color: hsl(201deg 18% 15%);
+}
+.code-str { color:#090; }
+.code-elem{ color: #F90; }
+.code-comment { color:#999; }
+.code-keyword { color: purple; }
+.code-type { color: #00F; }
+.code-name { color:  darkturquoise}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+function syntaxHighlights() {
+    var ca = $("code");
+    for(var i=0; i < ca.length; i++){
+        var data = ca[i].innerHTML;
+        data = data.replace(/"(.*?)"/g, '<span class="code-str">"$1"</span>');
+        data = data.replace(/\b(return|if|else|out|func|var)\b/g, '<span class="code-keyword">$1</span>');
+        data = data.replace(/(\w+)\(\w?\)/g, '<span style="color: rgb(132, 191, 225)">$1</span>()');
+        data = data.replace(/--(.*)/g, '<span class="code-comment">--$1</span>');
+        data = data.replace(/(--[\S\s]+--)/g, '<span class="code-comment">$1</span>');
+        ca[i].innerHTML = data;
+    }
+}
+window.addEventListener("load", syntaxHighlights);
+</script>
+</head>
+
+<body>
+<h2>Code example:</h2>
+<code>
+-- Simple Program in MoonGlow --
+
+func main() -> {
+    out "Hello World!";
+    return;
+}
+
+main();
+</code>
+</body>
+</html>
